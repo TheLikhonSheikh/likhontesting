@@ -125,4 +125,3 @@ while True:
 		bot.polling()
 	except:
 		sleep(1)
-
