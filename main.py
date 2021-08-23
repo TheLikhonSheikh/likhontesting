@@ -122,6 +122,6 @@ def qr(message):
 
 while True:
     try:
-        bot.polling()
+        bot.polling(0.04)
     except:
         sleep(1)
