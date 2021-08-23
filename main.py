@@ -120,5 +120,9 @@ def qr(message):
         bot.send_message(m, "Dude, where's the text?")
 
 
-
+while True:
+	try:
+		bot.polling()
+	except:
+		sleep(1)
 
