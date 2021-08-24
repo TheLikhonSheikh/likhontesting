@@ -2,4 +2,8 @@ requests
 qrcode
 Pillow
 pyTelegramBotAPI
-Flask
+Flask=1.1.2
+Gunicorn
+python-decouple
+flask_sqlalchemy
+psycopg2
