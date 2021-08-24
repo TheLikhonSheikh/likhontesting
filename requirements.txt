@@ -2,7 +2,7 @@ requests
 qrcode
 Pillow
 pyTelegramBotAPI
-Flask=1.1.2
+Flask==1.1.2
 Gunicorn
 python-decouple
 flask_sqlalchemy
