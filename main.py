@@ -1,11 +1,15 @@
-import telebot, requests
-import qrcode
+import telebot, requests, qrcode, os
 from telebot import types
 from time import sleep
+from flask import Flask, request
 import price as p
+#___________IMPORT_______________#
 
-bot = telebot.TeleBot('1806540764:AAHfQkvKp-CCzUyVCfTzTH7ePbQq2O8On9c', parse_mode='HTML')
+TOKEN = '1806540764:AAHfQkvKp-CCzUyVCfTzTH7ePbQq2O8On9c'
+bot = telebot.TeleBot(TOKEN, parse_mode='HTML')
 print("Bot started! Running...")
+server = flask(__name__)
+
 
 wlcm_msg = """Welcome to the Superdoge Bot! Feel free to ask any questions you have in our <a href='https://t.me/superdogecoin'>Telegram Group</a>.
 
@@ -29,6 +33,7 @@ guide = """"<ins>The following guides are available related to SuperDoge Wallet:
 <b>Backup & Restore Wallet:-</b> https://tiny.one/backupwallet
 
 In case you need any other guides or if you think any other topic would be useful, do write it in our group:)"""
+
 
 
 def newmsgs(message):
@@ -120,8 +125,21 @@ def qr(message):
         bot.send_message(m, "Dude, where's the text?")
 
 
-while True:
-    try:
-        bot.polling(0.04)
-    except:
-        sleep(1)
+@server.route('/' + TOKEN, methods=['POST'])
+def getMessage():
+    json_string = request.get_data().decode('utf-8')
+    update = telebot.types.Update.de_json(json_string)
+    bot.process_new_updates([update])
+    return "!", 200
+
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://superdogecoin.herokuapp.com/' + TOKEN)
+    return "!", 200
+
+
+
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
