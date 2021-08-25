@@ -2,7 +2,10 @@ import telebot, requests, qrcode, os
 from telebot import types
 from time import sleep
 import price as p
+from alive import keep_alive
 #___________IMPORT_______________#
+
+keep_alive()
 
 Access_Token = os.environ['TOKEN']
 bot = telebot.TeleBot(Access_Token, parse_mode='HTML')
