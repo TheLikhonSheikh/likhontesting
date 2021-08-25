@@ -1,14 +1,12 @@
 import telebot, requests, qrcode, os
 from telebot import types
 from time import sleep
-from flask import Flask, request
 import price as p
 #___________IMPORT_______________#
 
-TOKEN = '1806540764:AAHfQkvKp-CCzUyVCfTzTH7ePbQq2O8On9c'
-bot = telebot.TeleBot(TOKEN, parse_mode='HTML')
+Access_Token = os.environ['TOKEN']
+bot = telebot.TeleBot(Access_Token, parse_mode='HTML')
 print("Bot started! Running...")
-server = flask(__name__)
 
 
 wlcm_msg = """Welcome to the Superdoge Bot! Feel free to ask any questions you have in our <a href='https://t.me/superdogecoin'>Telegram Group</a>.
@@ -38,11 +36,8 @@ In case you need any other guides or if you think any other topic would be usefu
 
 def newmsgs(message):
     for m in message:
-        if message.chat.type == 'private':
-            if m.content_type=='text':
-                print(str(m.chat.first_name) + ' sent: ' + m.text)
-            elif m.content_type in ['audio', 'video', 'location', 'document', 'sticker', 'photo']:
-                print(str(m.chat.first_name) + ' sent a misc file')
+        if m.content_type=='text':
+            print(str(m.chat.first_name) + ' sent: ' + m.text)
 
 bot.set_update_listener(newmsgs)
 
@@ -125,21 +120,8 @@ def qr(message):
         bot.send_message(m, "Dude, where's the text?")
 
 
-@server.route('/' + TOKEN, methods=['POST'])
-def getMessage():
-    json_string = request.get_data().decode('utf-8')
-    update = telebot.types.Update.de_json(json_string)
-    bot.process_new_updates([update])
-    return "!", 200
-
-
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url='https://superdogecoin.herokuapp.com/' + TOKEN)
-    return "!", 200
-
-
-
-if __name__ == "__main__":
-    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
+while True:
+    try:
+        bot.polling(1)
+    except:
+        sleep(1)
