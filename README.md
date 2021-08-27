@@ -27,3 +27,7 @@ pip install qrcode
 ```
 pip install Flask
 ```
+
+## Info
+The bot can be found as [@superdogecoinbot](telegram.dog/superdogecoinbot) on Telegram!
+Hosted at [Replit](repl.it), check bot uptime at [UptimeRobot](bit.ly/sdogebot)
