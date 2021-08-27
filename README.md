@@ -30,4 +30,4 @@ pip install Flask
 
 ## Info
 The bot can be found as [@superdogecoinbot](https://telegram.dog/superdogecoinbot/) on Telegram!
-Hosted at [Replit](https://repl.it/), check bot uptime at [UptimeRobot](https://bit.ly/sdogebot/)
+Hosted at [Replit](https://repl.it/), check bot uptime at [UptimeRobot](https://bit.ly/sdogebot)
