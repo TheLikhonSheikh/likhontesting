@@ -9,7 +9,7 @@ from telebot.types import InputTextMessageContent as MSG
 
 keep_alive()
 
-Access_Token = os.environ["TOKEN"]
+Access_Token = os.environ["5080909700:AAHytfR4Epn87qjian5qR-_XJIWkmC_Zy0E"]
 bot = telebot.TeleBot(Access_Token, parse_mode='HTML')
 print("Bot started! Running...")
 
